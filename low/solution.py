@@ -1,8 +1,11 @@
 class Solution:
 	def twoSum(self, nums, target):
-		for i, value in enumerate(nums):
-			if (target - value) in nums[i+1::]:
-				return [i, nums.index(target - value)]
+		result = {}
+		for i, v in enumerate(nums):
+			remaining = target - v
+			if remaining in result:
+				return [result[remaining], i]
+			result[v] = i
 		return []
 
 	def reverse(self, x):
