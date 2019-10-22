@@ -12,5 +12,13 @@ class Solution:
 		if x == 0:
 			return 0
 		if x > 0:
-			print("S")
+			result = int(str(x)[::-1])
+		else:
+			result = -int(str(abs(x))[::-1])
+		mina = -2 ** 31
+		maxa = 2 ** 31 - 1
+		if(result in range(mina, maxa)):
+			return result
+		else:
+			return 0
 
