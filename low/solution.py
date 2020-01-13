@@ -1,4 +1,8 @@
 class Solution:
+	# 两数之和
+	# Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+	# Output: 7 -> 0 -> 8
+	# Explanation: 342 + 465 = 807.
 	def twoSum(self, nums, target):
 		result = {}
 		for i, v in enumerate(nums):
@@ -8,6 +12,9 @@ class Solution:
 			result[v] = i
 		return []
 
+	# 整数反转
+	# Input 123  -123
+	# Output 321 -321
 	def reverse(self, x):
 		if x == 0:
 			return 0
@@ -22,6 +29,9 @@ class Solution:
 		else:
 			return 0
 
+	# 是否回文
+	# Input  123
+	# Output True
 	def isPalindrome(self, x):
 		if x >= 0:
 			result = int(str(x)[::-1])
@@ -32,6 +42,9 @@ class Solution:
 		else:
 			return False
 
+	# 有效的括号
+	# Input {}[]
+	# Output True
 	def isValid(self, s):
 		stack = []
 		map = {
@@ -53,6 +66,9 @@ class Solution:
 					return False
 		return len(stack) == 0
 
+	# 去除重复数字
+	# Given nums = [1,1,2] Return 2
+	# Given nums = [0,0,1,1,1,2,2,3,3,4] Return 5
 	def removeDuplicates(self, nums):
 		if nums:
 			slow = 0
@@ -63,3 +79,43 @@ class Solution:
 			return slow + 1
 		else:
 			return 0
+
+	# Merge 两个有序数组
+	# Input:
+	# nums1 = [1, 2, 3, 0, 0, 0], m = 3
+	# nums2 = [2, 5, 6], n = 3
+	# Output: [1, 2, 2, 3, 5, 6]
+	def merge(self, nums1, nums2, m , n):
+		while m > 0 and n > 0:
+			if nums1[m - 1] <= nums2[n - 1]:
+				nums1[m + n - 1] = nums2[n - 1]
+				n -= 1
+			else:
+				nums1[m + n - 1] = nums1[m - 1]
+				m -= 1
+		if n > 0:
+			nums1[:n] = nums2[:n]
+
+	# 股票最佳买卖时间
+	"""
+	Input: [7,1,5,3,6,4]
+	Output: 5
+	Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+				 Not 7-1 = 6, as selling price needs to be larger than buying price.
+	Example 2:
+	Input: [7,6,4,3,1]
+	Output: 0
+	Explanation: In this case, no transaction is done, i.e. max profit = 0.
+	"""
+	def maxProfit(self, prices):
+		if not prices: return 0
+
+		min_price = float('inf')
+		max_profit = 0
+
+		for price in prices:
+			if price < min_price:
+				min_price = price
+			elif max_profit < price - min_price:
+				max_profit = price - min_price
+		return max_profit
