@@ -32,34 +32,18 @@ class Solution:
 		else:
 			return False
 
-	def addTwoNumbers(self, l1, l2):
-		result = []
-		result_tail = result
-		carry = 0
-
-		while l1 or l2 or carry:
-			val1 = (l1.value if l1 else 0)
-			val2 = (l2.value if l2 else 0)
-			carry, out = divmod(val1 + val2 + carry, 10)
-
-			result_tail.next = [out]
-			result_tail = result_tail.next
-
-			l1 = (l1.next if l1 else None)
-			l2 = (l2.next if l2 else None)
-
-	def isVaild(self, s:str) -> bool:
+	def isValid(self, s):
 		stack = []
-		c_map = {
-			"{" : "}",
-			"[" : "]",
-			"(" : "}"
+		map = {
+			"{": "}",
+			"[": "]",
+			"(": ")"
 		}
 		for x in s:
 			if x in map:
-				stack.append(c_map[x])
+				stack.append(map[x])
 			else:
-				if (len(stack) != 0):
+				if len(stack) != 0:
 					top_element = stack.pop()
 					if x != top_element:
 						return False
@@ -67,7 +51,15 @@ class Solution:
 						continue
 				else:
 					return False
+		return len(stack) == 0
 
-			return len(stack) == 0
-
-		return result.next
+	def removeDuplicates(self, nums):
+		if nums:
+			slow = 0
+			for fast in range(1, len(nums)):
+				if nums[fast] != nums[slow]:
+					slow += 1
+					nums[slow] = nums[fast]
+			return slow + 1
+		else:
+			return 0
