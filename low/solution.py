@@ -4,6 +4,7 @@ class Solution:
 	# Output: 7 -> 0 -> 8
 	# Explanation: 342 + 465 = 807.
 	def twoSum(self, nums, target):
+		# 使用Map进行处理
 		result = {}
 		for i, v in enumerate(nums):
 			remaining = target - v
@@ -19,6 +20,7 @@ class Solution:
 		if x == 0:
 			return 0
 		if x > 0:
+			# 先将Int转化为Str，再使用List切片进行反转
 			result = int(str(x)[::-1])
 		else:
 			result = -int(str(abs(x))[::-1])
@@ -34,6 +36,7 @@ class Solution:
 	# Output True
 	def isPalindrome(self, x):
 		if x >= 0:
+			# 先将Int转化为Str，再使用List切片进行反转
 			result = int(str(x)[::-1])
 			if result == x:
 				return True
@@ -57,6 +60,7 @@ class Solution:
 				stack.append(map[x])
 			else:
 				if len(stack) != 0:
+					# 利用栈的特性进行判断
 					top_element = stack.pop()
 					if x != top_element:
 						return False
@@ -72,6 +76,7 @@ class Solution:
 	def removeDuplicates(self, nums):
 		if nums:
 			slow = 0
+			# 快慢指针
 			for fast in range(1, len(nums)):
 				if nums[fast] != nums[slow]:
 					slow += 1
@@ -85,16 +90,33 @@ class Solution:
 	# nums1 = [1, 2, 3, 0, 0, 0], m = 3
 	# nums2 = [2, 5, 6], n = 3
 	# Output: [1, 2, 2, 3, 5, 6]
-	def merge(self, nums1, nums2, m , n):
-		while m > 0 and n > 0:
-			if nums1[m - 1] <= nums2[n - 1]:
-				nums1[m + n - 1] = nums2[n - 1]
-				n -= 1
+	def merge(self, nums1, m, nums2, n):
+		"""
+		:type nums1: List[int]
+		:type m: int
+		:type nums2: List[int]
+		:type n: int
+		:rtype: void Do not return anything, modify nums1 in-place instead.
+		"""
+		# two get pointers for nums1 and nums2
+		# 双指针，从后往前
+		p1 = m - 1
+		p2 = n - 1
+		# set pointer for nums1
+		p = m + n - 1
+
+		# while there are still elements to compare
+		while p1 >= 0 and p2 >= 0:
+			if nums1[p1] < nums2[p2]:
+				nums1[p] = nums2[p2]
+				p2 -= 1
 			else:
-				nums1[m + n - 1] = nums1[m - 1]
-				m -= 1
-		if n > 0:
-			nums1[:n] = nums2[:n]
+				nums1[p] = nums1[p1]
+				p1 -= 1
+			p -= 1
+
+		# add missing elements from nums2
+		nums1[:p2 + 1] = nums2[:p2 + 1]
 
 	# 股票最佳买卖时间
 	"""
@@ -119,3 +141,17 @@ class Solution:
 			elif max_profit < price - min_price:
 				max_profit = price - min_price
 		return max_profit
+
+	# 寻找不重复的数
+	def singleNumber(self, nums):
+		"""
+		:type nums: List[int]
+		:rtype: int
+		"""
+		a = 0
+		for i in nums:
+			# 可以采用XOR进行计算
+			# a ^ a = 0
+			# a ^ 0 = a
+			a ^= i
+		return a

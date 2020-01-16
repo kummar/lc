@@ -2,5 +2,6 @@ from low import solution
 
 s = solution.Solution()
 
-prices = [1, 12, 24, 100000, 1, 89, 123214]
-print(s.maxProfit(prices))
+nums1 = [3, 5, 1, 1, 5, 3, 11]
+
+print(s.singleNumber(nums1))
