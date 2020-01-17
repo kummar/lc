@@ -2,6 +2,7 @@ from low import solution
 
 s = solution.Solution()
 
-nums1 = [3, 5, 1, 1, 5, 3, 11]
+nums1 = [1, 2, 4, 6, 7]
 
-print(s.singleNumber(nums1))
+print(s.twoSum2(nums1, 13))
+print(s.twoSum(nums1, 13))
