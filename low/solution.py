@@ -1,8 +1,8 @@
 class Solution:
 	# 两数之和
-	# Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
-	# Output: 7 -> 0 -> 8
-	# Explanation: 342 + 465 = 807.
+	# Input: nums = [2, 7, 11, 15]
+	# Output: target = 9
+	# Explanation: nums[0] + nums[1] = 2 + 7 = 9
 	def twoSum(self, nums, target):
 		# 使用Map进行处理
 		result = {}
@@ -110,7 +110,6 @@ class Solution:
 		:rtype: void Do not return anything, modify nums1 in-place instead.
 		"""
 		# two get pointers for nums1 and nums2
-		# 双指针，从后往前
 		p1 = m - 1
 		p2 = n - 1
 		# set pointer for nums1
@@ -166,3 +165,14 @@ class Solution:
 			# a ^ 0 = a
 			a ^= i
 		return a
+
+	# 冒泡排序
+	def BubbleSort(self, lists):
+		n = len(lists)
+
+		for i in range(0, n):
+			for j in range(0, n - i - 1):
+				if lists[j] > lists[j + 1]:
+					lists[j], lists[j + 1] = lists[j + 1], lists[j]
+
+		return lists
