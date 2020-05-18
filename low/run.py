@@ -1,7 +1,21 @@
-import numpy as np
-import pandas as pd
+l1 = [2, 4, 3]
+l2 = [5, 6, 4]
 
-s = pd.Series([1, 3, 5, np.nan, 6, 8])
-# dates = pd.date_range('20130101', periods=6)
-# df = pd.DataFrame(np.random.randn(6, 4), index=dates, columns=list('ABCD'))
-pd.Series()?
+l1_in = l1[::-1]
+l2_in = l2[::-1]
+
+result_1 = 0
+for i in range(0, len(l1_in)):
+	print(l1_in[i])
+	result_1 += 10 ** (len(l1_in) - i - 1) * l1_in[i]
+	print(result_1)
+result_2 = 0
+for i in range(0, len(l2_in)):
+	print(l2_in[i])
+	result_2 += 10 ** (len(l2_in) - i - 1) * l2_in[i]
+	print(result_2)
+result = result_1 + result_2
+answer = []
+for i in str(result):
+	answer.append(int(i))
+print(answer)
