@@ -1,4 +1,17 @@
 class TargetInvestment:
+    """
+    用于计算目标收益所需时间和目标时间收益值
+
+    Args:
+        goal----目标收益
+        month----定存月数
+        return_investment----年化收益率
+        amount_investment----每月定存金额
+
+    Returns:
+        包含收益金额和时间的字符串
+    """
+
     def __init__(self):
         self.goal = 1000000
         self.month = 12
