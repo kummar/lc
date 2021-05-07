@@ -28,3 +28,9 @@ class Trie:
 
     def startsWith(self, prefix: str) -> bool:
         return self.searchPrefix(prefix) is not None
+
+
+t_ = Trie()
+t_.searchPrefix('apple')
+t_.searchPrefix('banana')
+print(t_.startsWith('b'))
